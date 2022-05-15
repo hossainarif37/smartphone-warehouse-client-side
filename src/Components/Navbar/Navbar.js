@@ -9,28 +9,29 @@ const Navbar = () => {
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <NavLink className="navbar-brand" to="">Navbar</NavLink>
+                    <NavLink className="navbar-brand" to="/">Navbar</NavLink>
 
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
 
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <NavLink className="nav-link active" aria-current="page" to="">Home</NavLink>
+                                <NavLink className="nav-link" aria-current="page" to="/home">Home</NavLink>
+                            </li>
+
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/manage">Manage Items</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link active" aria-current="page" to="">Blogs</NavLink>
+                                <NavLink className="nav-link" to="/myitems">My Items</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="">Manage Items</NavLink>
+                                <NavLink className="nav-link" to="/additems">Add Item</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="">My Items</NavLink>
+                                <NavLink className="nav-link" aria-current="page" to="/blogs">Blogs</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="">Add Item</NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="">Login</Link>
+                                <Link className="nav-link" to="/login">Login</Link>
                             </li>
                         </ul>
 
