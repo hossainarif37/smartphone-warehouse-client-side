@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import googleLogo from '../../../Images/googleLogo.png';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { toast, ToastContainer } from 'react-toastify';
 
 
 
 const Register = () => {
+    const [user] = useAuthState(auth);
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: "",
@@ -55,7 +56,7 @@ const Register = () => {
     };
     const [
         createUserWithEmailAndPassword,
-        user,
+        hookUser,
         loading,
         hookError,
     ] = useCreateUserWithEmailAndPassword(auth);
@@ -65,19 +66,20 @@ const Register = () => {
 
         if (!errors.password) {
             createUserWithEmailAndPassword(userInfo.email, userInfo.password);
-            if (hookError?.message) {
-                toast.error(hookError.message);
-                console.log(hookError);
-            }
-            else {
-                toast.success('Registration Successfully')
-            }
         }
         else {
             toast.error("Confirm password didn't match");
         }
 
     }
+    useEffect(() => {
+        if (!hookError && user) {
+            navigate('/');
+            toast.success('Registration Successful');
+        } else {
+            toast.error(hookError?.message)
+        }
+    }, [user, googleUser, hookError])
     const navigate = useNavigate();
     const handleNavigateLogin = () => {
         navigate('/login');

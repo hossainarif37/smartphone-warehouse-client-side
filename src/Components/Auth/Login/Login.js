@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 import googleLogo from '../../../Images/googleLogo.png'
 import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
@@ -50,11 +50,33 @@ const Login = () => {
     const handleLogin = e => {
         e.preventDefault();
         signInWithEmailAndPassword(userInfo.email, userInfo.password);
+
+
     }
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+    const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
+    useEffect(() => {
+        if (!hookError && user) {
+
+            navigate('/');
+            toast.success('Login Successful');
+
+
+        } else {
+            toast.error(hookError?.message)
+        }
+    }, [user, googleUser, hookError])
+
+
 
     const handleResetEmail = () => {
-        sendPasswordResetEmail(auth, userInfo.email)
+        sendPasswordResetEmail(userInfo.email);
+        if (error) {
+            toast.error(error.message)
+        }
+        else {
+            toast('Email sent')
+        }
     }
 
     const navigate = useNavigate();
@@ -83,10 +105,12 @@ const Login = () => {
                         <div className="inputBox">
                             <input type="submit" value="Login" />
                         </div>
-                        <div className="inputBox">
-                            <p>Don't have an account? <span onClick={handleNavigateRegister}>Sign Up</span></p>
-                        </div>
                     </form>
+                    <button onClick={handleResetEmail} className='btn-link border-0 bg-white'>Reset Password?</button>
+                    <div className="inputBox">
+                        <p>Don't have an account? <span onClick={handleNavigateRegister}>Sign Up</span></p>
+                    </div>
+
 
                     <div className='d-flex align-items-center justify-content-center gap-2 mb-2'>
                         <div className='horizontal-line'></div>
@@ -97,7 +121,6 @@ const Login = () => {
                         <img style={{ width: "25px", height: "25px" }} src={googleLogo} alt="" />
                         <span>Continue with Google</span>
                     </p>
-
                 </div>
             </div>
 
