@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import useProducts from '../../Hooks/useProducts/useProducts';
 
 const InventoryDetail = () => {
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        fetch('products.json')
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [])
+    const { id } = useParams();
+    console.log(products);
+
     return (
         <div>
             <>

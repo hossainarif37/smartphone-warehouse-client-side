@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css';
 import googleLogo from '../../../Images/googleLogo.png'
 import { useAuthState, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
@@ -18,6 +18,11 @@ const Login = () => {
         general: "",
     });
     const [user] = useAuthState(auth);
+    let navigate = useNavigate();
+    let location = useLocation();
+
+    let from = location?.state?.from?.pathname || "/";
+
 
     const handleEmail = (e) => {
         const emailRegex = /\S+@\S+\.\S+/;
@@ -47,6 +52,7 @@ const Login = () => {
         loading,
         hookError,
     ] = useSignInWithEmailAndPassword(auth);
+
     const handleLogin = e => {
         e.preventDefault();
         signInWithEmailAndPassword(userInfo.email, userInfo.password);
@@ -57,15 +63,12 @@ const Login = () => {
     const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
     useEffect(() => {
         if (!hookError && user) {
-
-            navigate('/');
+            navigate(from, { replace: true });
             toast.success('Login Successful');
-
-
         } else {
             toast.error(hookError?.message)
         }
-    }, [user, googleUser, hookError])
+    }, [googleUser, hookError])
 
 
 
@@ -79,7 +82,7 @@ const Login = () => {
         }
     }
 
-    const navigate = useNavigate();
+
     const handleNavigateRegister = () => {
         navigate('/register');
     };
