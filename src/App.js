@@ -8,6 +8,8 @@ import MyItems from './Components/MyItems/MyItems';
 import AddItem from './Components/AddItem/AddItem';
 import Register from './Components/Auth/Register/Register';
 import Login from './Components/Auth/Login/Login';
+import NotFound from './Components/NotFound/NotFound';
+import InventoryDetail from './Components/InventoryDetail/InventoryDetail';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
         <Route path='/additems' element={<AddItem></AddItem>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
+        <Route path='/inventory/:id' element={<InventoryDetail></InventoryDetail>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
     </div>
   );
