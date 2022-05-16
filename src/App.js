@@ -10,6 +10,8 @@ import Register from './Components/Auth/Register/Register';
 import Login from './Components/Auth/Login/Login';
 import NotFound from './Components/NotFound/NotFound';
 import InventoryDetail from './Components/InventoryDetail/InventoryDetail';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
         <Route path='/inventory/:id' element={<InventoryDetail></InventoryDetail>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
+      <ToastContainer></ToastContainer>
     </div>
   );
 }

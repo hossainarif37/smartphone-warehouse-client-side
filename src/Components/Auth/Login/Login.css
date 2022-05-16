@@ -128,18 +128,18 @@
     cursor: pointer;
 }
 
-/* 
+
 @media screen and (max-width: 768px) {
-      .formBox {
+    .formBox {
         width: 100%;
         padding: 40px;
         background: #fff;
     }
 
-      .formBox h3 {
+    .formBox h3 {
         color: #607d8b;
         text-align: center;
         margin: 30px 0 10px;
         font-weight: 500;
     }
-} */
+}
