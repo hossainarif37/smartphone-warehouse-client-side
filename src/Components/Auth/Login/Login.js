@@ -8,6 +8,7 @@ const Login = () => {
     const handleNavigateRegister = () => {
         navigate('/register');
     };
+
     return (
         <div>
 
