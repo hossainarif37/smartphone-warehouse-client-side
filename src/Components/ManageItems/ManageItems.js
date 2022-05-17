@@ -9,6 +9,7 @@ const ManageItems = () => {
     const handleNavigate = () => {
         navigate('/additems')
     }
+    console.log(products);
     return (
         <div>
             <h2 className='text-center border-bottom pb-2 my-3'>Manage Inventories</h2>
@@ -25,16 +26,16 @@ const ManageItems = () => {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td className='text-end'><button className='btn btn-danger'>x</button></td>
-                        </tr>
-
-                    </tbody>
+                    {
+                        products.map(pd => <tbody>
+                            <tr>
+                                <td>{pd.name}</td>
+                                <td>{pd.price}</td>
+                                <td>{pd.quantity}</td>
+                                <td className='text-end'><button className='btn btn-danger'>x</button></td>
+                            </tr>
+                        </tbody>)
+                    }
                 </Table>
 
             </div>
