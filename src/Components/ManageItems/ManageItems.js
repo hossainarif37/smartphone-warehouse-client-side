@@ -1,7 +1,9 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import useProducts from '../../Hooks/useProducts/useProducts';
 
 const ManageItems = () => {
+    const [products] = useProducts();
     return (
         <div>
             <h2 className='text-center border-bottom pb-2 my-3'>Manage Inventories</h2>

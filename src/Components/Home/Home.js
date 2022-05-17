@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useProducts from '../../Hooks/useProducts/useProducts';
 import Banner from '../Banner/Banner'
 import InventoryItem from '../InventoryItem/InventoryItem';
 
 const Home = () => {
     const [products] = useProducts([]);
-    console.log(products);
-
     return (
         <div>
             <Banner></Banner>

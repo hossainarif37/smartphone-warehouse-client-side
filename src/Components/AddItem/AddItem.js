@@ -1,6 +1,33 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const AddItem = () => {
+    const [user] = useAuthState(auth);
+    const handleAddItem = e => {
+        e.preventDefault();
+        const newProduct = {
+            name: e.target.name.value,
+            price: e.target.price.value,
+            quantity: e.target.quantity.value,
+            img: e.target.img.value,
+            description: e.target.desc.value,
+            email: user.email,
+            supplier: user.displayName
+
+        }
+        console.log(user);
+
+        fetch('http://localhost:5000/allproducts', {
+            method: 'POST',
+            body: JSON.stringify(newProduct),
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => console.log(data));
+    }
     return (
         <div>
             <div className="container">
@@ -14,7 +41,7 @@ const AddItem = () => {
                         <div className="card mt-2 mx-auto p-4 bg-light">
                             <div className="card-body bg-light">
                                 <div className="container">
-                                    <form>
+                                    <form onSubmit={handleAddItem}>
                                         <div className="controls">
                                             <div className="row my-3">
                                                 <div className="col-md-6">
