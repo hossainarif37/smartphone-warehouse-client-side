@@ -1,15 +1,20 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import useProducts from '../../Hooks/useProducts/useProducts';
 
 const ManageItems = () => {
     const [products] = useProducts();
+    const navigate = useNavigate();
+    const handleNavigate = () => {
+        navigate('/additems')
+    }
     return (
         <div>
             <h2 className='text-center border-bottom pb-2 my-3'>Manage Inventories</h2>
             <div className='container'>
                 <div className="text-center btn-lg">
-                    <button className='btn btn-success'>Add New Item</button>
+                    <button onClick={handleNavigate} className='btn btn-success'>Add New Item</button>
                 </div>
                 <Table striped bordered hover>
                     <thead>
