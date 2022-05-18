@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import useProducts from '../../Hooks/useProducts/useProducts';
 
 const ManageItems = () => {
-    const [products] = useProducts();
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/allproducts')
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [products])
+
     const navigate = useNavigate();
     const handleNavigate = () => {
         navigate('/additems')
     }
-    console.log(products);
+
+    const handleDelete = (id) => {
+        fetch(`http://localhost:5000/manage?id=${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    console.log(data);
+                    const newProduct = products.filter(pd => pd.id !== id);
+                    setProducts(newProduct)
+                }
+            })
+
+    }
     return (
         <div>
             <h2 className='text-center border-bottom pb-2 my-3'>Manage Inventories</h2>
@@ -32,7 +52,7 @@ const ManageItems = () => {
                                 <td>{pd.name}</td>
                                 <td>{pd.price}</td>
                                 <td>{pd.quantity}</td>
-                                <td className='text-end'><button className='btn btn-danger'>x</button></td>
+                                <td className='text-end'><button onClick={() => { handleDelete(pd._id) }} className='btn btn-danger'>x</button></td>
                             </tr>
                         </tbody>)
                     }

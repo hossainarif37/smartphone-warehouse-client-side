@@ -5,20 +5,60 @@ const InventoryDetail = () => {
     const [product, setProduct] = useState({});
     const { name, supplier, img, description, price, quantity } = product;
 
-
     const { id } = useParams();
-    console.log(product);
     useEffect(() => {
+
+
         fetch(`http://localhost:5000/inventory/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
-    }, [])
+    }, [product])
     const navigate = useNavigate();
     const handleNavigate = () => {
         navigate('/manage')
     }
 
+    const handleDelivery = (delivery) => {
 
+        fetch(`http://localhost:5000/inventory/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({ quantity, delivery }),
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data) {
+                    setProduct(product.quantity = product.quantity - 1);
+                }
+                else {
+                    console.log('Something went wrong');
+                }
+            });
+
+    }
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        const updateInput = parseInt(e.target.update.value);
+        fetch(`http://localhost:5000/inventory/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify({ quantity, updateInput }),
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data) {
+                    setProduct(product.quantity = product.quantity + 1);
+                }
+                else {
+                    console.log('Something went wrong');
+                }
+            });
+
+    }
 
     return (
         <div>
@@ -39,11 +79,11 @@ const InventoryDetail = () => {
                                         <h6 className="card-subtitle my-2">Supplier: {supplier}<span className="text-muted"></span></h6>
                                         <p className="card-text">Description: {description?.slice(0, 65)}...</p>
                                         <h5 className="card-text">Price: {price}</h5>
-                                        <h5 className="card-text">Available: {quantity} <button className='btn btn-danger'>Delivered</button></h5>
-                                        <div className="btn-group my-2">
-                                            <input type="number" className='form-control' required min="1" placeholder='Enter Quantity' />
+                                        <h5 className="card-text">Available: {quantity} <button onClick={() => { handleDelivery('delivered') }} className='btn btn-danger'>Delivered</button></h5>
+                                        <form onSubmit={handleUpdate} className="btn-group my-2">
+                                            <input name='update' type="number" className='form-control' required min="1" placeholder='Enter Quantity' />
                                             <button type='submit' className='btn btn-success px-2 btn-sm'>Update Quantity</button>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
