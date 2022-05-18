@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import googleLogo from '../../../Images/googleLogo.png';
 import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+
 
 
 
@@ -59,13 +60,14 @@ const Register = () => {
         hookUser,
         loading,
         hookError,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
     const handleRegister = e => {
         e.preventDefault();
 
         if (!errors.password) {
             createUserWithEmailAndPassword(userInfo.email, userInfo.password);
+            toast('Verification Email sent')
         }
         else {
             toast.error("Confirm password didn't match");

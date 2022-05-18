@@ -78,7 +78,7 @@ const Login = () => {
             toast.error(error.message)
         }
         else {
-            toast('Email sent')
+            toast('Reset email sent')
         }
     }
 

@@ -20,6 +20,7 @@ const InventoryDetail = () => {
 
     const handleDelivery = (delivery) => {
 
+
         fetch(`http://localhost:5000/inventory/${id}`, {
             method: 'PUT',
             body: JSON.stringify({ quantity, delivery }),
