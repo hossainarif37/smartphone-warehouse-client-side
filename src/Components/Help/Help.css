@@ -1,0 +1,42 @@
+.help-input-field {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    outline: none;
+    border-radius: 25px;
+    border: 1px solid black;
+    position: relative;
+}
+
+.search-btn {
+    width: 165px;
+    display: block;
+    padding: 0px;
+    height: 48px;
+    border: none;
+    border-radius: 25px;
+    background: repeating-radial-gradient(tomato, transparent 181px);
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.search-btn:hover {
+    background: repeating-radial-gradient(tomato, transparent 150px);
+}
+
+.help-center-form {
+    height: 400px;
+}
+
+.search-box {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    margin-top: 24px;
+}
+
+button.search-btn i {
+    font-size: 20px;
+}

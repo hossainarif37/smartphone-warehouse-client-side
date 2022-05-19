@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RequireAuth from './Components/Auth/RequireAuth/RequireAuth';
 import Footer from './Components/Footer/Footer';
+import Help from './Components/Help/Help';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
+        <Route path='/help' element={<Help></Help>}></Route>
         <Route path='/manage' element={
           <ManageItems></ManageItems>
         }></Route>

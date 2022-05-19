@@ -1,0 +1,31 @@
+.detail-submit-section {
+    background-color: #F2F2F2;
+}
+
+.detail-email-field {
+    padding: 10px;
+    width: 100%;
+    margin-right: 10px;
+    border: none;
+    outline-color: #ddd;
+    border-radius: 8px;
+}
+
+.detail-email-btn {
+    padding: 10px 0;
+    width: 130px;
+    background: tomato;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    color: white;
+    transition: .2s;
+}
+
+.detail-email-btn:hover {
+    background-color: #222;
+}
+
+.detail-form {
+    display: flex;
+}
