@@ -26,7 +26,7 @@ const MyItems = () => {
 
     }
     return (
-        <div>
+        <div className='py-5'>
             <h2 className='text-center border-bottom pb-2 my-3'>My Items</h2>
             <div className="container">
                 <Table striped bordered hover>

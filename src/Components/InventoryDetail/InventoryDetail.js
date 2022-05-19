@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const InventoryDetail = () => {
     const [product, setProduct] = useState({});
@@ -51,14 +52,16 @@ const InventoryDetail = () => {
         })
             .then((res) => res.json())
             .then((data) => {
+
                 if (data) {
                     setProduct(product.quantity = product.quantity + 1);
+                    toast.success('Updated Successful')
                 }
                 else {
                     console.log('Something went wrong');
                 }
             });
-
+        e.target.reset();
     }
 
     return (

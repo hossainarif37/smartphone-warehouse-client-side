@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const AddItem = () => {
@@ -16,21 +17,26 @@ const AddItem = () => {
             supplier: user.displayName
 
         }
-        console.log(user);
 
         fetch('http://localhost:5000/allproducts', {
             method: 'POST',
             body: JSON.stringify(newProduct),
             headers: {
-                'Content-type': 'application/json',
-            },
+                'Content-type': 'application/json'
+            }
         })
             .then((res) => res.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+                if (data) {
+                    toast.success('Added Successful');
+                }
+
+            })
+        e.target.reset();
     }
     return (
         <div>
-            <div className="container">
+            <div className="container mb-5">
                 <div className=" text-center mt-5 ">
                     <div className="text-center border-bottom mb-5">
                         <h1>Add an Item</h1>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import useProducts from '../../Hooks/useProducts/useProducts';
 
 const ManageItems = () => {
     const [products, setProducts] = useState([]);
@@ -31,7 +30,7 @@ const ManageItems = () => {
 
     }
     return (
-        <div>
+        <div className='py-5'>
             <h2 className='text-center border-bottom pb-2 my-3'>Manage Inventories</h2>
             <div className='container'>
                 <div className="text-center btn-lg">
