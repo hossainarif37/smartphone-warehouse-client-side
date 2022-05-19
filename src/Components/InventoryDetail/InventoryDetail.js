@@ -10,7 +10,7 @@ const InventoryDetail = () => {
     useEffect(() => {
 
 
-        fetch(`http://localhost:5000/inventory/${id}`)
+        fetch(`https://smarthphone-warehouse-37.herokuapp.com/inventory/${id}`)
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [product])
@@ -22,7 +22,7 @@ const InventoryDetail = () => {
     const handleDelivery = (delivery) => {
 
 
-        fetch(`http://localhost:5000/inventory/${id}`, {
+        fetch(`https://smarthphone-warehouse-37.herokuapp.com/inventory/${id}`, {
             method: 'PUT',
             body: JSON.stringify({ quantity, delivery }),
             headers: {
@@ -43,7 +43,7 @@ const InventoryDetail = () => {
     const handleUpdate = (e) => {
         e.preventDefault();
         const updateInput = parseInt(e.target.update.value);
-        fetch(`http://localhost:5000/inventory/${id}`, {
+        fetch(`https://smarthphone-warehouse-37.herokuapp.com/inventory/${id}`, {
             method: 'PUT',
             body: JSON.stringify({ quantity, updateInput }),
             headers: {

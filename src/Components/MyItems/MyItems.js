@@ -7,12 +7,12 @@ const MyItems = () => {
     const [items, setItems] = useState([]);
     const [user] = useAuthState(auth);
     useEffect(() => {
-        fetch(`http://localhost:5000/myitems?email=${user?.email}`)
+        fetch(`https://smarthphone-warehouse-37.herokuapp.com/myitems?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setItems(data))
     }, [items]);
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/manage?id=${id}`, {
+        fetch(`https://smarthphone-warehouse-37.herokuapp.com/manage?id=${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

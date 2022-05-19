@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const ManageItems = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/allproducts')
+        fetch('https://smarthphone-warehouse-37.herokuapp.com/allproducts')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [products])
@@ -16,7 +16,7 @@ const ManageItems = () => {
     }
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/manage?id=${id}`, {
+        fetch(`https://smarthphone-warehouse-37.herokuapp.com/manage?id=${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
