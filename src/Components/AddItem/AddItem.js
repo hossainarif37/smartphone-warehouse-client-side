@@ -81,7 +81,7 @@ const AddItem = () => {
                                                     </div>
                                                 </div>
                                                 <div className="col-md-12 mt-3">
-                                                    <input type="submit" className="btn btn-success btn-send  pt-2 btn-block
+                                                    <input type="submit" className=" btn btn-success btn-send  pt-2 btn-block
                             " value="Add An Item" />
                                                 </div>
                                             </div>

@@ -7,7 +7,9 @@ const RequireAuth = ({ children }) => {
     const [user, loading] = useAuthState(auth);
     let location = useLocation();
     if (loading) {
-        return <p className='text-center mt-3'>loading...</p>
+        return <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </div>
     }
 
     if (!user) {

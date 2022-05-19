@@ -1,0 +1,10 @@
+#inventory-btn {
+    background-color: tomato;
+    transition: .2s;
+    border: none;
+    outline: none;
+}
+
+#inventory-btn:hover {
+    background-color: #222;
+}

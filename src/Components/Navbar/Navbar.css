@@ -1,0 +1,14 @@
+.navbar {
+    background-color: #ddd;
+
+}
+
+.navbar-link a {
+    color: black;
+}
+
+
+
+.navbar-brand-phone {
+    color: tomato;
+}

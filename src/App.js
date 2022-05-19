@@ -13,6 +13,7 @@ import InventoryDetail from './Components/InventoryDetail/InventoryDetail';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import RequireAuth from './Components/Auth/RequireAuth/RequireAuth';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         }></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
+      <Footer></Footer>
       <ToastContainer></ToastContainer>
     </div>
   );
